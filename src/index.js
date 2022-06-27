@@ -4,15 +4,20 @@ import "./less/index.less";
 //Heading spins 360 degrees when mouse goes over or a link is clicked
 const header = document.querySelector(".logo-heading");
 //Navigation for mouseover effect of bolding
-const nav = document.querySelectorAll(".nav-link");
+const navLinks = document.querySelectorAll(".nav-link");
 //Images for expanding and compressing images:
 const images = document.querySelectorAll("img");
-const scale = document.querySelector(".scale");
-console.log(scale);
+//Making another dashed line under navigation:
+const divHeader = document.querySelector(".main-navigation");
+// const headerDash = document.createElement("div");
+const headerDash = document.querySelector(".container.nav-container");
+// divHeader.appendChild(headerDash);
+
+console.log(headerDash);
 
 //Mouse over nav bolds the item the cursor is over, when the mouse leaves the item goes back to normal
 //Two event types used:
-nav.forEach((item) => {
+navLinks.forEach((item) => {
   item.addEventListener("mouseover", (event) => {
     event.target.style.fontWeight = "bold";
   });
@@ -23,7 +28,7 @@ nav.forEach((item) => {
 });
 
 //When double clicked, images expand. If user used esc key or clicks out of the image, the image will compress back to where it was on the page.
-// 2 out of 3 event types used:
+// 3 event types used:
 images.forEach((img) => {
   img.addEventListener("dblclick", (event) => {
     event.target.style.transform = "scale(1.75)";
@@ -33,7 +38,6 @@ images.forEach((img) => {
 
   document.addEventListener("click", () => {
     img.style.transform = "initial";
-    img.style.transition = "transform 0.5s ease";
   });
 
   document.addEventListener("keydown", (event) => {
@@ -44,11 +48,18 @@ images.forEach((img) => {
 });
 
 //If zoomed in too much, an alert pops up informing you:
-document.addEventListener("wheel", (event) => {
-  if ((document.style.transform = "scale(3)")) {
-    window.alert("Zoom back out for the best experience.");
-  }
-});
+// document.addEventListener("wheel", (event) => {
+//   if ((event.target.style.transform = "scale(10)")) {
+//     alert("Zoom back out for the best experience.");
+//   }
+// });
 
+//Changing color of initial Header, making it a little bigger:
+header.classList.add("font");
+
+//Making the header spin:
+
+//Making another dashed line under navigation:
+headerDash.classList.add("dash");
 //Event types used:
-//Mouseover, mouseout, dblclick, click
+//Mouseover, mouseout, dblclick, click, keydown
