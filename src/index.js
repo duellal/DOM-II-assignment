@@ -49,11 +49,6 @@ window.addEventListener('load', () => {
     })
 })
 
-//Making all text be highlighted in a light orange color:
-document.addEventListener('select', (event) => {
-    event.target.style.backgroundColor = 'green'
-})
-
 //Mouse over nav bolds the item the cursor is over, when the mouse leaves the item goes back to normal
 //Two event types used:
 navLinks.forEach((item) => {
@@ -170,6 +165,7 @@ btnLinks[2].addEventListener('click', () => {
 //Making button color change on mouseover:
 btnLinks.forEach((item) => {
     item.addEventListener('mouseover', (event) => {
+        //got code for random color function from https://stackoverflow.com/questions/46716945/generate-random-background-color-by-clicking-on-link
         const rndmColor = () => {
             let red = Math.floor(Math.random() * 250 + 0);
             let blue = Math.floor(Math.random() * 250 + 0);
