@@ -2,7 +2,7 @@ import "./less/index.less";
 
 // Making variables to use:
 //Heading spins 360 degrees when mouse goes over or a link is clicked
-const header = document.querySelector(".logo-heading");
+const headerTitle = document.querySelector(".logo-heading");
 //Navigation for mouseover effect of bolding
 const navLinks = document.querySelectorAll(".nav-link");
 //Images for expanding and compressing images:
@@ -16,12 +16,10 @@ divHeader.appendChild(dashDiv);
 const dashIntro = document.querySelector('.intro');
 const dashDiv2 = document.createElement('div');
 dashIntro.appendChild(dashDiv2);
-
 //for second set of double dashed lines
 const dashInverse = document.querySelector('.inverse-content');
 const dashDiv3 = document.createElement('div');
 dashInverse.append(dashDiv3)
-
 //for last set of double dashed lines
 const dashPick = document.querySelector('.content-pick');
 const dashDiv4 = document.createElement('div');
@@ -30,17 +28,31 @@ const dashPickText = document.querySelectorAll('.content-pick .destination')
 dashDiv4.append(dashPickText[0])
 dashDiv4.append(dashPickText[1])
 dashDiv4.append(dashPickText[2])
-
 // Double dashed lines for footer:
 const footer = document.querySelector('footer');
 const divFooter = document.createElement('div')
 footer.prepend(divFooter)
-
-// For preventDefault to change Sign Up button links to go somewhere:
+//Footer Text:
+const footerP = document.querySelector('footer p')
+//To make Sign Up button links to go somewhere:
 const btnLinks = document.querySelectorAll('.content-pick .destination .btn')
 
-console.log(footer)
 
+//When window loads, the header and footer change colors:
+window.addEventListener('load', () => {
+    console.log('The page loaded!');
+    footer.style.backgroundColor = '#090B0F';
+    footerP.style.color = '#C9C4BB';
+    divHeader.style.backgroundColor = '#090B0F';
+    navLinks.forEach((item) => {
+        item.style.color = '#C9C4BB'
+    })
+})
+
+//Making all text be highlighted in a light orange color:
+document.addEventListener('select', (event) => {
+    event.target.style.backgroundColor = 'green'
+})
 
 //Mouse over nav bolds the item the cursor is over, when the mouse leaves the item goes back to normal
 //Two event types used:
@@ -53,6 +65,34 @@ navLinks.forEach((item) => {
     event.target.style.fontWeight = "normal";
   });
 });
+
+//preventDefault to stop nav links from refreshing page:
+navLinks.forEach((item) => {
+    item.addEventListener('click', (event) => {
+        event.preventDefault();
+    })
+})
+
+
+//Changing color of initial Header, making it a little bigger, adding color:
+headerTitle.style.color = '#F8C303';
+headerTitle.style.fontSize = '5rem'
+headerTitle.style.fontWeight = '900'
+
+//Making the header title spin:
+const spin = {
+    transformY: 'rotate(0deg)',
+    transform: 'rotate(360deg)'
+}
+
+const timing = {
+    duration: 2000,
+    iterations: 1
+}
+
+headerTitle.addEventListener('mouseover', (event) => {
+    event.target.animate(spin, timing);
+})
 
 //When double clicked, images expand. If user used esc key or clicks out of the image, the image will compress back to where it was on the page.
 // 3 event types used:
@@ -74,20 +114,11 @@ images.forEach((img) => {
   });
 });
 
-//Changing color of initial Header, making it a little bigger, adding color:
-header.style.color = '#F8C303';
-header.style.fontSize = '5rem'
-header.style.textShadow = '-2px -2px 0 black, 2px 0 black, -2px 2px 0 black, 2px 2px 0 black'
-header.style.fontWeight = '900'
-
-//Making the header spin - if I have time:
-
 
 //Making another dashed line under navigation + color:
-divHeader.style.paddingBottom = '10px';
-divHeader.style.borderColor = '#E67E22';
-
-dashDiv.style.borderBottom = '2px dashed #E67E22';
+divHeader.style.paddingBottom = '15px';
+divHeader.style.borderBottom = '#090B0F';
+dashDiv.style.borderBottom = '5px solid #E67E22';
 
 images.forEach((item) => {
     item.style.paddingTop = '20px';
@@ -118,24 +149,10 @@ dashDiv4.style.borderTop = '2px dashed #E67E22';
 
 //Footer double dashed lines:
 divFooter.style.width = '100%'
-divFooter.style.borderTop = '2px dashed #E67E22';
+divFooter.style.borderTop = '5px solid #E67E22';
 footer.style.paddingTop = '10px'
-footer.style.borderTop = '2px dashed #E67E22'
+footer.style.borderTop = '#090B0F'
 
-//Changing footer background color and footer text color:
-footer.style.backgroundColor = '#090B0F';
-footer.style.color = '#4E4F51'
-//Event types used:
-//Mouseover, mouseout, dblclick, click, keydown
-
-//Styles used: 
-//Border, width, padding, color, borderColor, textShadow, fontSize, fontWeight, transform, transition, display, justifyContent
-
-//preventDefault to make links go somewhere:
-// Making a class for each button on their divs:
-// btnLinks[0].classList.add('one')
-// btnLinks[1].classList.add('two')
-// btnLinks[2].classList.add('three')
 
 //Adding links to each button:
 btnLinks[0].addEventListener('click', () => {
@@ -150,7 +167,19 @@ btnLinks[2].addEventListener('click', () => {
     window.open('https://www.igetaway.net/', '_blank')
 })
 
+//Making button color change on mouseover:
+btnLinks.forEach((item) => {
+    item.addEventListener('mouseover', (event) => {
+        const rndmColor = () => {
+            let red = Math.floor(Math.random() * 250 + 0);
+            let blue = Math.floor(Math.random() * 250 + 0);
+            let green = Math.floor(Math.random() * 250 + 0);
 
+            let color;
+            color = 'rgb('+red+','+green+','+blue+')'
+            return color
+        }
 
-console.log(btnLinks[0])
-console.log(btnLinks)
+        event.target.style.backgroundColor= rndmColor()
+    })
+})
